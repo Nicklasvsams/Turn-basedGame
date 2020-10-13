@@ -15,6 +15,7 @@ public class BattleUIController : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Hi");
         spellPanel.SetActive(false);
     }
 
@@ -24,6 +25,7 @@ public class BattleUIController : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction);
+            Debug.Log("Hitinfo: " + hitInfo.transform.name);
             if (hitInfo.collider != null && hitInfo.collider.CompareTag("Character"))
             {
                 BattleController.Instance.SelectCharacter(hitInfo.collider.GetComponent<Character>());
@@ -33,6 +35,8 @@ public class BattleUIController : MonoBehaviour
 
     public void ToggleSpellPanel(bool state)
     {
+        Debug.Log("Spell panel toggle activated");
+
         spellPanel.SetActive(state);
 
         if (state == true)
@@ -44,7 +48,7 @@ public class BattleUIController : MonoBehaviour
     public void ToggleActionState(bool state)
     {
         ToggleSpellPanel(state);
-
+        Debug.Log("ActionState: " + state);
         foreach(var button in actionButtons)
         {
             button.interactable = state;
@@ -53,6 +57,7 @@ public class BattleUIController : MonoBehaviour
 
     public void BuildSpellList(List<Spell> spells)
     {
+        Debug.Log("Building spell list");
         if (spellPanel.transform.childCount > 0)
         {
             foreach(var button in spellPanel.transform.GetComponentsInChildren<Button>())
@@ -83,6 +88,7 @@ public class BattleUIController : MonoBehaviour
 
     public void Defend()
     {
+        Debug.Log("Defending");
         BattleController.Instance.GetCurrentCharacter().Defend();
     }
 
@@ -93,5 +99,10 @@ public class BattleUIController : MonoBehaviour
             Character character = BattleController.Instance.characters[1][i];
             enemyInfo[i].text = string.Format("{0} > HP: {1}/{2} - MP: {3}/{4}", character.characterName, character.health, character.maxHealth, character.mana, character.maxMana);
         }
+    }
+
+    public void Test()
+    {
+        Debug.Log("Button clicked.");
     }
 }

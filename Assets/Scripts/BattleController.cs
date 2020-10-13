@@ -76,10 +76,12 @@ public class BattleController : MonoBehaviour
             switch (battleTurnIndex)
             {
                 case 0:
+                    Debug.Log("Characters turn");
                     uiController.ToggleActionState(true);
                     uiController.BuildSpellList(GetCurrentCharacter().spells);
                     break;
                 case 1:
+                    Debug.Log("Enemy turn");
                     uiController.ToggleActionState(false);
                     StartCoroutine(PerformAction());
                     break;
