@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Character
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Skybox
+    uniqueID: 2416252623
+    locked: 0
+  - name: Background
+    uniqueID: 96198099
+    locked: 0
+  - name: Foreground
+    uniqueID: 3353112413
+    locked: 0
+  - name: Battlearea
+    uniqueID: 3153347489
+    locked: 0
+  - name: Characters
+    uniqueID: 699519171
     locked: 0
