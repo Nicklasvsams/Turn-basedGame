@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266250203637045734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.463, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,11 +50,11 @@ MonoBehaviour:
   maxHealth: 100
   mana: 100
   maxMana: 100
-  atkPower: 20
-  defPower: 20
+  atkPower: 50
+  defPower: 5
   spells:
-  - {fileID: 3342853895860159093, guid: 7562fba2b6b15034792dd5b6141c6681, type: 3}
-  - {fileID: 5386732712987521588, guid: 8b4cf6e69a9517940814b991a6f4cbf9, type: 3}
+  - {fileID: 1854998867389490345, guid: 09d47ea1ba81b554c8d5c41c57f86d18, type: 3}
+  - {fileID: 4308714706608210849, guid: 8b4cf6e69a9517940814b991a6f4cbf9, type: 3}
 --- !u!212 &5413575107126352144
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69,6 +69,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -91,7 +92,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 699519171
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 52983236343ff4a4e92e97a8eafb5593, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

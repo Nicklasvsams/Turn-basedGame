@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8032818099992959293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.8, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0.813, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -125,7 +126,7 @@ MonoBehaviour:
   maxHealth: 25
   mana: 10
   maxMana: 10
-  atkPower: 10
-  defPower: 5
+  atkPower: 5
+  defPower: 2
   spells:
-  - {fileID: 5386732712987521588, guid: 8b4cf6e69a9517940814b991a6f4cbf9, type: 3}
+  - {fileID: 4308714706608210849, guid: 8b4cf6e69a9517940814b991a6f4cbf9, type: 3}

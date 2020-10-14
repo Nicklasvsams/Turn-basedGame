@@ -15,8 +15,8 @@ public class BattleUIController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Hi");
         spellPanel.SetActive(false);
+        
     }
 
     private void Update()
@@ -25,18 +25,19 @@ public class BattleUIController : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction);
-            Debug.Log("Hitinfo: " + hitInfo.transform.name);
-            if (hitInfo.collider != null && hitInfo.collider.CompareTag("Character"))
+            if (hitInfo.collider != null && hitInfo.collider.CompareTag("Character") && BattleController.Instance.battleTurnIndex == 0)
             {
                 BattleController.Instance.SelectCharacter(hitInfo.collider.GetComponent<Character>());
             }
         }
+
+        UpdateCharacterUI();
     }
 
     public void ToggleSpellPanel(bool state)
     {
-        Debug.Log("Spell panel toggle activated");
-
+        Debug.Log("Spell panel toggle: " + state);
+        
         spellPanel.SetActive(state);
 
         if (state == true)
@@ -80,8 +81,9 @@ public class BattleUIController : MonoBehaviour
         BattleController.Instance.playerSelectedAttack = false;
     }
 
-    void SelectAttack()
+    public void SelectAttack()
     {
+        Debug.Log("Attack selected");
         BattleController.Instance.playerSelectedSpell = null;
         BattleController.Instance.playerSelectedAttack = true;
     }
@@ -89,7 +91,7 @@ public class BattleUIController : MonoBehaviour
     public void Defend()
     {
         Debug.Log("Defending");
-        BattleController.Instance.GetCurrentCharacter().Defend();
+        BattleController.Instance.PerformDefense();
     }
 
     public void UpdateCharacterUI()
@@ -98,6 +100,14 @@ public class BattleUIController : MonoBehaviour
         {
             Character character = BattleController.Instance.characters[1][i];
             enemyInfo[i].text = string.Format("{0} > HP: {1}/{2} - MP: {3}/{4}", character.characterName, character.health, character.maxHealth, character.mana, character.maxMana);
+        }
+
+        if (enemyInfo.Length > BattleController.Instance.characters[1].Count)
+        {
+            for (int i = BattleController.Instance.characters[1].Count; i < enemyInfo.Length; i++)
+            {
+                enemyInfo[i].text = "";
+            }
         }
     }
 

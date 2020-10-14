@@ -196,8 +196,8 @@ MonoBehaviour:
   players:
   - {fileID: 236873109300057392, guid: 9c61811ddde6c494cafbcbc350bd06ec, type: 3}
   enemies:
-  - {fileID: 5293283908610983734, guid: e7e14232b6ae859468972c34426650a8, type: 3}
   - {fileID: 517506765741821846, guid: dcb11787f69d0ea4c95e0ebe52d49a47, type: 3}
+  - {fileID: 5293283908610983734, guid: e7e14232b6ae859468972c34426650a8, type: 3}
   - {fileID: 517506765741821846, guid: dcb11787f69d0ea4c95e0ebe52d49a47, type: 3}
   launcher: {fileID: 168720926}
 --- !u!4 &412329694

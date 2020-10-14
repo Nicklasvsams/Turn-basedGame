@@ -13,9 +13,25 @@ public class Character : MonoBehaviour
     {
         if (spell.cost <= mana)
         {
-            Spell spellToCast = Instantiate<Spell>(spell, transform.position, Quaternion.identity);
+            var spellPosition = new Vector3(targetCharacter.transform.position.x, targetCharacter.transform.position.y, targetCharacter.transform.position.z - 2f);
+            Spell spellToCast = null;
+
+            Debug.Log("Spellname: " + spell.spellName);
+            if (spell.spellName == "Fire Pillar")
+            {
+                Debug.Log("Fire Pillar instantiation");
+                spellToCast = Instantiate<Spell>(spell, spellPosition, new Quaternion(0.7071f, 0, 0, 0.7071f));
+            }
+            else
+            {
+                Debug.Log("Other spell instantiated");
+                spellToCast = Instantiate<Spell>(spell, spellPosition, Quaternion.identity);
+            }
+
             mana -= spellToCast.cost;
+
             spellToCast.Cast(targetCharacter);
+
             return true;
         }
         else
@@ -27,10 +43,14 @@ public class Character : MonoBehaviour
 
     public void Damage(int damage)
     {
-        health = Mathf.Max((int)(Random.Range(0, 101) / 100) * (damage < defPower ? 1 : damage - defPower), 0);
+        health = Mathf.Max(health - (damage < defPower ? 0 : damage - defPower), 0);
+
+        Debug.Log(BattleController.Instance.GetCurrentCharacter().characterName + " damaged " + this.characterName + " for " + Mathf.Max((damage < defPower ? 0 : damage - defPower), 0) + "damage");
+        
         if (health == 0)
         {
-            // dedlul
+            Die();
+            Debug.Log(this.characterName + "has died.");
         }
     }
 
@@ -46,8 +66,8 @@ public class Character : MonoBehaviour
 
     public void Defend()
     {
+        Debug.LogFormat("Def increased from {0} to {1}", defPower, (int)(defPower+defPower*0.5));
         defPower += (int)(defPower * 0.5);
-        Debug.Log("Def increased.");
     }
 
     public virtual void Die()

@@ -20,7 +20,6 @@ public class Enemy : Character
                 }
                 else if (!CastSpell(spellToCast, target))
                 {
-                    Debug.LogFormat("Not enough mana to cast {0}", spellToCast);
                     BattleController.Instance.PerformAttack(this, target);
                 }
                 break;
@@ -38,6 +37,7 @@ public class Enemy : Character
     public override void Die()
     {
         base.Die();
+        Debug.LogFormat("Enemy {0} died", this.characterName);
         BattleController.Instance.characters[1].Remove(this);
     }
 }
