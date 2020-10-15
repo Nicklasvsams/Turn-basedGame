@@ -1,13 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    public Animator animator;
+    public bool isAttacking;
+    public bool finishedAttack;
+    public Vector3 startPosition;
+    public Vector3 targetPosition;
+    public float attackSpeed;
+    protected SpriteRenderer renderer;
+
     public string characterName;
     public int health, maxHealth;
     public int mana, maxMana;
     public int atkPower, defPower;
     public List<Spell> spells;
+
+    private void Update()
+    {
+        AttackAnimation();
+    }
 
     public bool CastSpell(Spell spell, Character targetCharacter)
     {
@@ -39,6 +53,67 @@ public class Character : MonoBehaviour
             Debug.LogFormat("Not enough mana to cast {0}", spell);
             return false;
         }
+    }
+
+    public void AttackAnimation()
+    {
+        Debug.Log("Reached -1");
+        if (isAttacking)
+        {
+            renderer = this.GetComponent<SpriteRenderer>();
+
+            animator.SetBool("FinishedAttack", false);
+            Debug.Log("Reached 0");
+            if (!this.finishedAttack)
+            {
+                Debug.Log("Reached 1");
+                if (Vector3.Distance(this.transform.position, targetPosition) > 0.1f)
+                {
+                    Debug.LogFormat("Reached 2: CharPos - {0} # TarPos: {1}", transform.position, targetPosition);
+                    animator.SetBool("MovingToTarget", true);
+                    transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, attackSpeed * Time.deltaTime);
+                }
+                else if (Vector3.Distance(this.transform.position, targetPosition) <= 0.1f)
+                {
+                    Debug.Log("Reached 3");
+                    animator.SetBool("MovingToTarget", false);
+                    animator.SetBool("ReachedTarget", true);
+
+                    if (this.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && this.animator.GetCurrentAnimatorStateInfo(0).IsName(this.characterName + "_Attack"))
+                    {
+                        Debug.Log("Reached 4");
+                        this.finishedAttack = true;
+                        renderer.flipX = !renderer.flipX;
+                    }
+                }
+            }
+            else
+            {
+                if (Vector3.Distance(this.transform.position, startPosition) > 0)
+                {
+                    animator.SetBool("ReachedTarget", false);
+                    animator.SetBool("MovingToTarget", true);
+
+                    transform.position = Vector3.MoveTowards(this.transform.position, startPosition, attackSpeed * Time.deltaTime);
+                }
+                else if (Vector3.Distance(this.transform.position, startPosition) <= 0)
+                {
+                    animator.SetBool("MovingToTarget", false);
+                    animator.SetBool("FinishedAttack", true);
+                    isAttacking = false;
+
+                    renderer.flipX = !renderer.flipX;
+                }
+            }
+        }
+    }
+
+    public void Attack(Vector3 target)
+    {
+        this.isAttacking = true;
+        this.startPosition = this.transform.position;
+        this.targetPosition = new Vector3(target.x, this.transform.position.y, this.transform.position.z);
+        this.finishedAttack = false;
     }
 
     public void Damage(int damage)

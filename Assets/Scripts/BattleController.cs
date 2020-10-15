@@ -33,7 +33,6 @@ public class BattleController : MonoBehaviour
         characters.Add(1, new List<Character>());
 
         FindObjectOfType<BattleLauncher>().Launch();
-        // uiController.UpdateCharacterUI();
     }
 
     public Character GetPlayer()
@@ -63,6 +62,7 @@ public class BattleController : MonoBehaviour
 
     private void NextAction()
     {
+        Debug.LogFormat("Next action started Char:{0}/{1}", battleTurnIndex, characterTurnIndex);
         if(characters[0].Count > 0 && characters[1].Count > 0)
         {
             if (characterTurnIndex < characters[battleTurnIndex].Count - 1)
@@ -105,13 +105,17 @@ public class BattleController : MonoBehaviour
             GetCurrentCharacter().GetComponent<Enemy>().Act();
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
+
         NextAction();
     }
 
-    public void PerformAttack(Character attacker, Character target)
+    public IEnumerator PerformAttack(Character attacker, Character target)
     {
-        Debug.Log("Do attack (BattleController.PerformAttack)");
+        attacker.Attack(target.GetComponentInParent<Transform>().position);
+
+        yield return new WaitForSeconds(Vector3.Distance(attacker.transform.position, target.transform.position) / 7.5f);
+
         target.Damage(attacker.atkPower);
 
         if (battleTurnIndex == 0)
@@ -130,7 +134,8 @@ public class BattleController : MonoBehaviour
     {
         if (playerSelectedAttack)
         {
-            PerformAttack(GetCurrentCharacter(), character);
+            StartCoroutine(PerformAttack(GetCurrentCharacter(), character));
+            
         }
         else if (playerSelectedSpell != null)
         {

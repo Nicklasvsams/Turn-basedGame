@@ -36,8 +36,6 @@ public class BattleUIController : MonoBehaviour
 
     public void ToggleSpellPanel(bool state)
     {
-        Debug.Log("Spell panel toggle: " + state);
-        
         spellPanel.SetActive(state);
 
         if (state == true)
@@ -49,7 +47,7 @@ public class BattleUIController : MonoBehaviour
     public void ToggleActionState(bool state)
     {
         ToggleSpellPanel(state);
-        Debug.Log("ActionState: " + state);
+
         foreach(var button in actionButtons)
         {
             button.interactable = state;
@@ -58,7 +56,6 @@ public class BattleUIController : MonoBehaviour
 
     public void BuildSpellList(List<Spell> spells)
     {
-        Debug.Log("Building spell list");
         if (spellPanel.transform.childCount > 0)
         {
             foreach(var button in spellPanel.transform.GetComponentsInChildren<Button>())
@@ -83,14 +80,12 @@ public class BattleUIController : MonoBehaviour
 
     public void SelectAttack()
     {
-        Debug.Log("Attack selected");
         BattleController.Instance.playerSelectedSpell = null;
         BattleController.Instance.playerSelectedAttack = true;
     }
 
     public void Defend()
     {
-        Debug.Log("Defending");
         BattleController.Instance.PerformDefense();
     }
 

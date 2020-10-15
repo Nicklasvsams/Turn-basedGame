@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1018327487997768278
+--- !u!1 &3808267848897883837
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6012151669589268062}
-  - component: {fileID: 8762035022364688586}
-  - component: {fileID: 5905156078832019820}
-  - component: {fileID: 517506765741821846}
+  - component: {fileID: 3893065761344771918}
+  - component: {fileID: 8749274688690806767}
+  - component: {fileID: 4947571965539220225}
+  - component: {fileID: 7367094930279649985}
+  - component: {fileID: 8624992686122086818}
   m_Layer: 0
   m_Name: Cabat
   m_TagString: Character
@@ -19,13 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6012151669589268062
+--- !u!4 &3893065761344771918
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018327487997768278}
+  m_GameObject: {fileID: 3808267848897883837}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.17, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 0}
@@ -33,13 +34,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8762035022364688586
+--- !u!212 &8749274688690806767
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018327487997768278}
+  m_GameObject: {fileID: 3808267848897883837}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,13 +84,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5905156078832019820
+--- !u!61 &4947571965539220225
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018327487997768278}
+  m_GameObject: {fileID: 3808267848897883837}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -109,18 +110,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.25}
   m_EdgeRadius: 0
---- !u!114 &517506765741821846
+--- !u!114 &7367094930279649985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018327487997768278}
+  m_GameObject: {fileID: 3808267848897883837}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fb9523205da45a4e96370ca29b7ceb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 8624992686122086818}
+  isAttacking: 0
+  finishedAttack: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  attackSpeed: 10
   characterName: Cabat
   health: 20
   maxHealth: 20
@@ -130,3 +137,22 @@ MonoBehaviour:
   defPower: 3
   spells:
   - {fileID: 1854998867389490345, guid: 09d47ea1ba81b554c8d5c41c57f86d18, type: 3}
+--- !u!95 &8624992686122086818
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808267848897883837}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99ed0069d3a0227418828e1131ad88bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

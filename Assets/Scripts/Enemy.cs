@@ -2,9 +2,14 @@
 
 public class Enemy : Character
 {
+    private void Start()
+    {
+        this.animator.Play(this.characterName + "_Idle", 0, Random.Range(0.0f, 1.0f));
+    }
+
     public void Act()
     {
-        int randomAction = Random.Range(0, 2);
+        int randomAction = 2;  /*Random.Range(0, 2);*/
         Character target = BattleController.Instance.GetPlayer();
 
         switch (randomAction)
@@ -20,11 +25,11 @@ public class Enemy : Character
                 }
                 else if (!CastSpell(spellToCast, target))
                 {
-                    BattleController.Instance.PerformAttack(this, target);
+                    StartCoroutine(BattleController.Instance.PerformAttack(this, target));
                 }
                 break;
             case 2:
-                BattleController.Instance.PerformAttack(this, target);
+                StartCoroutine(BattleController.Instance.PerformAttack(this, target));
                 break;
         }
     }

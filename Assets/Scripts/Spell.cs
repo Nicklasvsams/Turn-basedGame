@@ -16,7 +16,7 @@ public class Spell : MonoBehaviour
         if (targetPosition != Vector3.zero)
         {
             var offset = new Vector3(this.transform.position.x, this.transform.position.y, -2);
-            var targetOffset = new Vector3(targetPosition.x, targetPosition.y, -2);
+            var targetOffset = new Vector3(targetPosition.x, targetPosition.y + (this.transform.localScale.y * 0.5f), -2);
 
             transform.position = Vector3.MoveTowards(offset, targetOffset, spellSpeed * Time.deltaTime);
 
