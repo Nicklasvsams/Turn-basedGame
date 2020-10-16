@@ -37,19 +37,19 @@ public class Spell : MonoBehaviour
 
         if (spellType == SpellType.Attack)
         {
-            Debug.Log(spellName + " was cast on " + target.name);
+            BattleController.Instance.battleLog.Log(string.Format("{0} was cast on {1}", spellName, target.characterName));
+
             target.Damage(power);
         }
         else if (spellType == SpellType.Heal)
         {
-            // Heal damage
-            Debug.Log(spellName + " was cast on " + target.name);
+            BattleController.Instance.battleLog.Log(string.Format("{0} was cast on {1}", spellName, target.characterName));
+            
             target.Heal(power);
         }
         else if (spellType == SpellType.Buff)
         {
             // Give beneficial status
-            Debug.Log(spellName + " was cast on " + target.name);
         }
     }
 }

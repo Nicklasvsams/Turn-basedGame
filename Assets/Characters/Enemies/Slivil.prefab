@@ -135,6 +135,7 @@ MonoBehaviour:
   maxMana: 10
   atkPower: 5
   defPower: 2
+  defOrigin: 2
   spells:
   - {fileID: 4308714706608210849, guid: 8b4cf6e69a9517940814b991a6f4cbf9, type: 3}
 --- !u!95 &1160067619462266293

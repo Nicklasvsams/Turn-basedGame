@@ -13,7 +13,7 @@ public class BattleLog : MonoBehaviour
     [SerializeField]
     private List<Message> messageList = new List<Message>();
 
-    public void SendMessageToChat(string text)
+    public void Log(string text)
     {
         if (messageList.Count >= maxMessages)
         {
@@ -23,15 +23,9 @@ public class BattleLog : MonoBehaviour
 
         if (text.Contains("Player"))
         {
-            // 15
             var indexOfPlayer = text.IndexOf("Player");
 
-            Debug.Log("Pindex: " + indexOfPlayer + " - TLength: " + text.Length);
-            Debug.Log(text);
-
-            // 34
             string tempText;
-
 
             if(indexOfPlayer == 0)
             {
@@ -41,7 +35,6 @@ public class BattleLog : MonoBehaviour
             }
             else
             {
-                Debug.Log(text.Length - (indexOfPlayer + 6) - text.Substring(0, indexOfPlayer).Length);
                 tempText = string.Format("{0}{1}", text.Substring(0, indexOfPlayer), text.Substring(indexOfPlayer+6));
 
                 tempText = tempText.Insert(indexOfPlayer, "you");

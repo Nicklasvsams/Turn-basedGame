@@ -8,8 +8,8 @@ public class Enemy : Character
     }
 
     public void Act()
-    {
-        int randomAction = 2;  /*Random.Range(0, 2);*/
+    { 
+        int randomAction = Random.Range(0, 2);
         Character target = BattleController.Instance.GetPlayer();
 
         switch (randomAction)
@@ -42,7 +42,6 @@ public class Enemy : Character
     public override void Die()
     {
         base.Die();
-        Debug.LogFormat("Enemy {0} died", this.characterName);
         BattleController.Instance.characters[1].Remove(this);
     }
 }
