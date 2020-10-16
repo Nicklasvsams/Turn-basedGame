@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Extensions;
 
 public class Character : MonoBehaviour
 {
@@ -57,7 +57,6 @@ public class Character : MonoBehaviour
 
     public void AttackAnimation()
     {
-        Debug.Log("Reached -1");
         if (isAttacking)
         {
             renderer = this.GetComponent<SpriteRenderer>();
@@ -91,6 +90,7 @@ public class Character : MonoBehaviour
             {
                 if (Vector3.Distance(this.transform.position, startPosition) > 0)
                 {
+                    Debug.Log("Reached 5");
                     animator.SetBool("ReachedTarget", false);
                     animator.SetBool("MovingToTarget", true);
 
@@ -98,6 +98,7 @@ public class Character : MonoBehaviour
                 }
                 else if (Vector3.Distance(this.transform.position, startPosition) <= 0)
                 {
+                    Debug.Log("Reached 6");
                     animator.SetBool("MovingToTarget", false);
                     animator.SetBool("FinishedAttack", true);
                     isAttacking = false;
@@ -119,6 +120,8 @@ public class Character : MonoBehaviour
     public void Damage(int damage)
     {
         health = Mathf.Max(health - (damage < defPower ? 0 : damage - defPower), 0);
+        
+        BattleController.Instance.battleLog.SendMessageToChat(string.Format("{0} damaged {1} for {2} damage", BattleController.Instance.GetCurrentCharacter().characterName, this.characterName, Mathf.Max((damage < defPower ? 0 : damage - defPower), 0)));
 
         Debug.Log(BattleController.Instance.GetCurrentCharacter().characterName + " damaged " + this.characterName + " for " + Mathf.Max((damage < defPower ? 0 : damage - defPower), 0) + "damage");
         

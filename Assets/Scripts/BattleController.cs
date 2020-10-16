@@ -12,11 +12,11 @@ public class BattleController : MonoBehaviour
     public Spell playerSelectedSpell;
     public bool playerSelectedAttack;
 
+    public BattleLog battleLog;
     [SerializeField]
     private BattleSpawnPoint[] spawnPoints;
     [SerializeField]
     private BattleUIController uiController;
-
 
     private void Start()
     {
@@ -98,14 +98,14 @@ public class BattleController : MonoBehaviour
 
     IEnumerator PerformAction()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         if (GetCurrentCharacter().health > 0 && battleTurnIndex == 1)
         {
             GetCurrentCharacter().GetComponent<Enemy>().Act();
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         NextAction();
     }
@@ -114,7 +114,7 @@ public class BattleController : MonoBehaviour
     {
         attacker.Attack(target.GetComponentInParent<Transform>().position);
 
-        yield return new WaitForSeconds(Vector3.Distance(attacker.transform.position, target.transform.position) / 7.5f);
+        yield return new WaitForSeconds(Vector3.Distance(attacker.transform.position, target.transform.position) / 8f);
 
         target.Damage(attacker.atkPower);
 
