@@ -75,6 +75,13 @@ public class BattleController : MonoBehaviour
                 characterTurnIndex = 0;
             }
 
+            if (this.GetCurrentCharacter().isDefending)
+            {
+                this.GetCurrentCharacter().isDefending = false;
+                this.GetCurrentCharacter().defPower = this.GetCurrentCharacter().defOrigin;
+                this.battleLog.Log("Defense has reverted to normal for " + this.GetCurrentCharacter().characterName);
+            }
+
             switch (battleTurnIndex)
             {
                 case 0:

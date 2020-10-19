@@ -123,11 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8624992686122086818}
-  isAttacking: 0
-  finishedAttack: 0
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
-  attackSpeed: 10
+  attackMoveSpeed: 10
   characterName: Cabat
   health: 20
   maxHealth: 20

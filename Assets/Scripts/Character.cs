@@ -10,9 +10,10 @@ public class Character : MonoBehaviour
 
     public float attackMoveSpeed;
 
-    private bool isAttacking, 
-        finishedAttack, 
-        isDefending;
+    private bool isAttacking,
+        finishedAttack;
+
+    public bool isDefending;
 
     protected SpriteRenderer spriteRenderer;
 
@@ -32,7 +33,7 @@ public class Character : MonoBehaviour
         if (spell.cost <= mana)
         {
             var spellPosition = new Vector3(targetCharacter.transform.position.x, targetCharacter.transform.position.y, targetCharacter.transform.position.z - 2f);
-            
+
 
             Spell spellToCast = Instantiate<Spell>(spell, spellPosition, spell.spellName == "Fire Pillar" ? new Quaternion(0.7071f, 0, 0, 0.7071f) : Quaternion.identity);
 
@@ -63,7 +64,7 @@ public class Character : MonoBehaviour
                 if (Vector3.Distance(this.transform.position, targetPosition) > 0.1f)
                 {
                     animator.SetBool("MovingToTarget", true);
-                    transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, attackSpeed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, attackMoveSpeed * Time.deltaTime);
                 }
                 else if (Vector3.Distance(this.transform.position, targetPosition) <= 0.1f)
                 {
@@ -84,7 +85,7 @@ public class Character : MonoBehaviour
                     animator.SetBool("ReachedTarget", false);
                     animator.SetBool("MovingToTarget", true);
 
-                    transform.position = Vector3.MoveTowards(this.transform.position, startPosition, attackSpeed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(this.transform.position, startPosition, attackMoveSpeed * Time.deltaTime);
                 }
                 else if (Vector3.Distance(this.transform.position, startPosition) <= 0)
                 {
@@ -132,6 +133,8 @@ public class Character : MonoBehaviour
     public void Defend()
     {
         defPower += (int)(defPower * 0.5);
+        isDefending = true;
+
         BattleController.Instance.battleLog.Log(string.Format("{0} used defend! (+50% damage reduction)", this.characterName));
     }
 
