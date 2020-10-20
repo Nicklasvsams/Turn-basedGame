@@ -9,7 +9,7 @@ public class Enemy : Character
 
     public void Act()
     { 
-        int randomAction = Random.Range(0, 2);
+        int randomAction = 2 /*Random.Range(0, 2)*/;
         Character target = BattleController.Instance.GetPlayer();
 
         switch (randomAction)

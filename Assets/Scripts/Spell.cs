@@ -33,7 +33,8 @@ public class Spell : MonoBehaviour
 
     public void Cast(Character target)
     {
-        targetPosition = target.transform.position;
+        var targetComponent = target.GetComponent<BoxCollider2D>().offset;
+        targetPosition = new Vector3(targetComponent.x + target.transform.position.x, targetComponent.y + target.transform.position.y, target.transform.position.z);
 
         if (spellType == SpellType.Attack)
         {
